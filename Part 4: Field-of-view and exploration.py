@@ -6,7 +6,7 @@ SCREEN_HEIGHT = 45
 WINDOW_TITLE = "Python 3 tcod tutorial"
 FULL_SCREEN = False
 LIMIT_FPS = 20
-TURN_BASED = True # turn-based game
+TURN_BASED = False # turn-based game
 
 MAP_WIDTH = 80
 MAP_HEIGHT = 45
@@ -25,7 +25,7 @@ color_light_ground = tcod.Color(200, 180, 50)
 
 FOV_ALGO = 0  #default FOV algorithm
 FOV_LIGHT_WALLS = True
-TORCH_RADIUS = 10
+TORCH_RADIUS = 7
 
 class Rect:
     def __init__(self, x, y, w, h):
@@ -64,6 +64,7 @@ class Object:
         self.color = color
 
     def move(self, dx, dy):
+        global map
         if not map[self.x + dx][self.y + dy].blocked:
             self.x += dx
             self.y += dy
