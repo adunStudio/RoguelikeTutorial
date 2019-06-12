@@ -50,6 +50,9 @@ LIGHTNING_RANGE = 5.
 CONFUSE_NUM_TURNS = 10
 CONFUSE_RANGE = 8
 
+FIREBALL_DAMAGE = 12
+FIREBALL_RADIUS = 3
+
 
 class Fighter:
     def __init__(self, hp, defense, power, death_function=None):
@@ -167,11 +170,11 @@ class Object:
     def move_towards(self, target_x, target_y):
         dx = target_x - self.x
         dy = target_y - self.y
-        distance = math.sqrt(dx ** 2 + dy ** 2)
+        dist = math.sqrt(dx ** 2 + dy ** 2)
 
         # Normalize
-        dx = int(round(dx / distance))
-        dy = int(round(dy / distance))
+        dx = int(round(dx / dist))
+        dy = int(round(dy / dist))
         self.move(dx, dy)
 
     def distance_to(self, other):
@@ -179,6 +182,9 @@ class Object:
         dy = other.y - self.y
 
         return math.sqrt(dx ** 2 + dy ** 2)
+
+    def distance(self, x, y):
+        return math.sqrt((x - self.x) ** 2 + (y - self.y) ** 2)
 
     def send_to_back(self):
         global objects
@@ -326,6 +332,10 @@ def place_objects(room):
                 item_component = Item(use_function=cast_lightning)
                 item = Object(x, y, '#', 'scroll of lightning bolt', tcod.light_yellow, item=item_component)
 
+            elif dice < 70 + 15 + 10:
+                item_component = Item(use_function=cast_fireball)
+                item = Object(x, y, '#', 'scroll of fireball', tcod.light_red, item=item_component)
+
             else:
                 item_component = Item(use_function=cast_confuse)
                 item = Object(x, y, '#', 'scroll of confusion', tcod.light_yellow, item=item_component)
@@ -400,6 +410,21 @@ def cast_confuse():
     message('The eyes of the ' + monster.name + ' look vacant, as he starts to stumble around!', tcod.light_green)
 
 
+def cast_fireball():
+    message('Left-click a target tile for the fireball, or right-click to cancel.', tcod.light_cyan)
+
+    (x, y) = target_tile()
+    if x is None:
+        return "cancelled"
+
+    message('The fireball explodes, burning everything within ' + str(FIREBALL_RADIUS) + ' tiles!', tcod.orange)
+
+    for obj in objects:
+        if obj.distance(x, y) <= FIREBALL_RADIUS and obj.fighter:
+            message('The ' + obj.name + ' gets burned for ' + str(FIREBALL_DAMAGE) + ' hit points.', tcod.orange)
+            obj.fighter.take_damage(FIREBALL_DAMAGE)
+
+
 def closest_monster(max_range):
 
     closest_enemy = None
@@ -414,6 +439,23 @@ def closest_monster(max_range):
                 break
 
     return closest_enemy
+
+def target_tile(max_range=None):
+    global key, mouse
+
+    while True:
+        tcod.console_flush()
+        tcod.sys_check_for_event(tcod.EVENT_KEY | tcod.EVENT_MOUSE, key, mouse)
+        render_all()
+
+        (x, y) = (mouse.cx, mouse.cy)
+
+        if mouse.lbutton_pressed and tcod.map_is_in_fov(fov_map, x, y) and (max_range is None or player.distance(x, y) <= max_range):
+            return (x, y)
+
+        if mouse.rbutton_pressed or key.vk == tcod.KEY_ESCAPE:
+            return (None, None)
+
 
 
 def inventory_menu(header):
@@ -534,7 +576,6 @@ def render_all():
 
     tcod.console_set_default_foreground(panel, tcod.light_gray)
     name = get_names_under_mouse()
-    print(name)
     tcod.console_print_ex(panel, 1, 0, tcod.BKGND_NONE, tcod.LEFT, name)
 
     render_bar(1, 1, BAR_WIDTH, "HP", player.fighter.hp, player.fighter.max_hp, tcod.light_red, tcod.darker_red)
