@@ -222,6 +222,15 @@ class Item:
             objects.remove(self.owner)
             message('You picked up a ' + self.owner.name + '!', tcod.green)
 
+    def drop(self):
+        objects.append(self.owner)
+        inventory.remove(self.owner)
+
+        self.owner.x = player.x
+        self.owner.y = player.y
+
+        message('You dropped a ' + self.owner.name + '.', tcod.yellow)
+
 def make_map():
     global map, player
 
@@ -642,6 +651,11 @@ def handle_keys():
                 choose_item = inventory_menu('Press the key next to an item to use it, or any other to cancel.\n')
                 if choose_item is not None:
                     choose_item.use()
+
+            if key_char == 'd':
+                chosen_item = inventory_menu('Press the key next to an item to drop it, or any other to cancel.\n')
+                if chosen_item is not None:
+                    chosen_item.drop()
 
     else:
         return 'didnt-take-turn'

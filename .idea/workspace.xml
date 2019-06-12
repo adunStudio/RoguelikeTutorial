@@ -17,7 +17,7 @@
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_7__The_GUI.coverage" NAME="Part 7: The GUI Coverage Results" MODIFIED="1560261656903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_4__Field_of_view_and_exploration.coverage" NAME="Part 4: Field-of-view and exploration Coverage Results" MODIFIED="1560149740713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$df.coverage" NAME="df Coverage Results" MODIFIED="1560146406734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_9__Spells_and_ranged_combat.coverage" NAME="Part 9: Spells and ranged combat Coverage Results" MODIFIED="1560315227797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_9__Spells_and_ranged_combat.coverage" NAME="Part 9: Spells and ranged combat Coverage Results" MODIFIED="1560315651968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_5__Preparing_for_combat.coverage" NAME="Part 5: Preparing for combat Coverage Results" MODIFIED="1560232227645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Map.coverage" NAME="Map Coverage Results" MODIFIED="1560137938832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$main.coverage" NAME="main Coverage Results" MODIFIED="1560146896454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -41,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Part 9: Spells and ranged combat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="764" lean-forward="true" selection-start-line="764" selection-end-line="764" />
+            <state relative-caret-position="259">
+              <caret line="643" column="25" selection-start-line="643" selection-start-column="25" selection-end-line="643" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -58,8 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cancelled</find>
-      <find>inventory_</find>
       <find>inventory_menu</find>
       <find>use(</find>
       <find>take_dam</find>
@@ -88,6 +86,8 @@
       <find>cast_confuse</find>
       <find>render_all</find>
       <find>clear()</find>
+      <find>Item(</find>
+      <find>class Item</find>
     </findStrings>
     <replaceStrings>
       <replace>tcod</replace>
@@ -298,12 +298,12 @@
       <option name="presentableId" value="Default" />
       <updated>1560133173998</updated>
       <workItem from="1560133175340" duration="19010000" />
-      <workItem from="1560260706562" duration="12936000" />
+      <workItem from="1560260706562" duration="13344000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31946000" />
+    <option name="totallyTimeSpent" value="32354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2357" y="0" width="1003" height="1080" extended-state="6" />
@@ -447,8 +447,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Part 9: Spells and ranged combat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="764" lean-forward="true" selection-start-line="764" selection-end-line="764" />
+        <state relative-caret-position="259">
+          <caret line="643" column="25" selection-start-line="643" selection-start-column="25" selection-end-line="643" selection-end-column="25" />
         </state>
       </provider>
     </entry>
