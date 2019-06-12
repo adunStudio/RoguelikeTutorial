@@ -398,11 +398,12 @@ def cast_lightning():
 
 def cast_confuse():
 
-    monster = closest_monster(CONFUSE_RANGE)
+    message('Left-click an enemy to confuse it, or right-click to cancel.', tcod.light_cyan)
+
+    monster = target_monster(CONFUSE_RANGE)
 
     if monster is None:
-        message("No enemy is close enough to confuse.", tcod.red)
-        return "cancelled"
+        return 'cancelled'
 
     old_ai = monster.ai
     monster.ai = ConfuseMonster(old_ai=old_ai)
@@ -456,6 +457,17 @@ def target_tile(max_range=None):
         if mouse.rbutton_pressed or key.vk == tcod.KEY_ESCAPE:
             return (None, None)
 
+
+def target_monster(max_range=None):
+
+    while True:
+        (x, y) = target_tile(max_range)
+        if x is None:
+            return None
+
+        for obj in objects:
+            if obj.x == x and obj.y ==y and obj.fighter and obj != player:
+                return obj
 
 
 def inventory_menu(header):
