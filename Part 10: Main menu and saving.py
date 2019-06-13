@@ -25,7 +25,7 @@ ROOM_MAX_SIZE = 10
 ROOM_MIN_SIZE = 6
 MAX_ROOMS = 30
 
-EXPLORE_MODE = False
+EXPLORE_MODE = True
 
 color_dark_wall = tcod.Color(0, 0, 100)
 color_light_wall = tcod.Color(130, 110, 50)
@@ -497,6 +497,10 @@ def menu(header, options, width):
     if len(options) > 26: raise ValueError('Cannot have a menu with more than 26 options.')
 
     header_height = tcod.console_get_height_rect(con, 0, 0, width, SCREEN_HEIGHT, header)
+
+    if header == '':
+        header_height = 0
+
     height = len(options) + header_height + 2
 
     window = tcod.console_new(SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -521,12 +525,29 @@ def menu(header, options, width):
     tcod.console_flush()
     key = tcod.console_wait_for_keypress(True)
 
+    if key.vk == tcod.KEY_ENTER and key.lalt:
+        tcod.console_set_fullscreen(not tcod.console_is_fullscreen())
+
     index = key.c - ord('a')
     if index >= 0 and index < len(options):
         return index
 
     return None
 
+def main_menu():
+    img = tcod.image_load("/Users/adun/Desktop/RoguelikeTutorial/princess.png") # 160 * 100
+
+    while not tcod.console_is_window_closed():
+        tcod.image_blit_2x(img, 0, 0, 0)
+
+        choice = menu("", ["Play a new game, ", "Continue last game", "Quit"], 24)
+
+        if choice == 0:
+            new_game()
+            play_game()
+
+        elif choice == 2:
+            break
 
 
 def render_all():
@@ -619,7 +640,6 @@ def handle_keys():
     key = get_key_event(TURN_BASED)
 
     if key.vk == tcod.KEY_ENTER and key.lalt:
-        # Alt+Enter: toggle fullscreen
         tcod.console_set_fullscreen(not tcod.console_is_fullscreen())
 
     elif key.vk == tcod.KEY_ESCAPE:
@@ -752,6 +772,8 @@ def initialize_fov():
         for x in range(MAP_WIDTH):
             tcod.map_set_properties(fov_map, x, y, not map[x][y].block_sight, not map[x][y].blocked)
 
+    tcod.console_clear(con)
+
 
 def play_game():
     global key, mouse
@@ -787,8 +809,7 @@ def main():
 
     tcod.sys_set_fps(LIMIT_FPS)
 
-    new_game()
-    play_game()
+    main_menu()
 
 
 
