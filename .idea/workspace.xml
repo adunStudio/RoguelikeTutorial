@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c08aed65-a6b3-42d4-a0d6-d5347c2a2124" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Part 9: Spells and ranged combat.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part 9: Spells and ranged combat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Part 10: Main menu and saving.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,10 +15,11 @@
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_8__Items_and_Inventory.coverage" NAME="Part 8: Items and Inventory Coverage Results" MODIFIED="1560308914572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$part3.coverage" NAME="part3 Coverage Results" MODIFIED="1560146473556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_6__Going_Berserk_.coverage" NAME="Part 6: Going Berserk! Coverage Results" MODIFIED="1560261637443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_10__Main_menu_and_saving.coverage" NAME="Part 10: Main menu and saving Coverage Results" MODIFIED="1560410542771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_7__The_GUI.coverage" NAME="Part 7: The GUI Coverage Results" MODIFIED="1560261656903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_4__Field_of_view_and_exploration.coverage" NAME="Part 4: Field-of-view and exploration Coverage Results" MODIFIED="1560149740713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$df.coverage" NAME="df Coverage Results" MODIFIED="1560146406734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_9__Spells_and_ranged_combat.coverage" NAME="Part 9: Spells and ranged combat Coverage Results" MODIFIED="1560315651968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_9__Spells_and_ranged_combat.coverage" NAME="Part 9: Spells and ranged combat Coverage Results" MODIFIED="1560410000573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Part_5__Preparing_for_combat.coverage" NAME="Part 5: Preparing for combat Coverage Results" MODIFIED="1560232227645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$Map.coverage" NAME="Map Coverage Results" MODIFIED="1560137938832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RoguelikeTutorial$main.coverage" NAME="main Coverage Results" MODIFIED="1560146896454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -38,11 +40,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Part 9: Spells and ranged combat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="643" column="25" selection-start-line="643" selection-start-column="25" selection-end-line="643" selection-end-column="25" />
+            <state relative-caret-position="351">
+              <caret line="738" lean-forward="true" selection-start-line="738" selection-end-line="738" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Part 10: Main menu and saving.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="402">
+              <caret line="56" column="64" lean-forward="true" selection-start-line="56" selection-start-column="64" selection-end-line="56" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -58,18 +69,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>inventory_menu</find>
-      <find>use(</find>
-      <find>take_dam</find>
-      <find>def cast</find>
-      <find>cast_lightning</find>
-      <find>CONFUSE</find>
-      <find>monster(</find>
-      <find>move</find>
-      <find>attack</find>
-      <find>scroll</find>
-      <find>place_obj</find>
-      <find>def cast_co</find>
       <find>confuseMonster</find>
       <find>monster.ai</find>
       <find>for_Event</find>
@@ -88,6 +87,18 @@
       <find>clear()</find>
       <find>Item(</find>
       <find>class Item</find>
+      <find>map = [</find>
+      <find>inventory</find>
+      <find>game_msgs</find>
+      <find>fov_map =</find>
+      <find>objects</find>
+      <find>game_State</find>
+      <find>game_state =</find>
+      <find>player_action</find>
+      <find>fov_recompute</find>
+      <find>new_game</find>
+      <find>make_map()</find>
+      <find>make_map</find>
     </findStrings>
     <replaceStrings>
       <replace>tcod</replace>
@@ -111,6 +122,7 @@
         <option value="$PROJECT_DIR$/Part 6: Going Berserk!.py" />
         <option value="$PROJECT_DIR$/Part 8: Items and Inventory.py" />
         <option value="$PROJECT_DIR$/Part 9: Spells and ranged combat.py" />
+        <option value="$PROJECT_DIR$/Part 10: Main menu and saving.py" />
       </list>
     </option>
   </component>
@@ -125,7 +137,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -141,6 +152,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -166,8 +178,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Part 9: Spells and ranged combat">
-    <configuration name="Part 5: Preparing for combat" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.Part 10: Main menu and saving">
+    <configuration name="Part 10: Main menu and saving" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RoguelikeTutorial" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -180,7 +192,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Part 5: Preparing for combat.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Part 10: Main menu and saving.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -279,11 +291,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Part 10: Main menu and saving" />
         <item itemvalue="Python.Part 9: Spells and ranged combat" />
         <item itemvalue="Python.Part 8: Items and Inventory" />
         <item itemvalue="Python.Part 7: The GUI" />
         <item itemvalue="Python.Part 6: Going Berserk!" />
-        <item itemvalue="Python.Part 5: Preparing for combat" />
       </list>
     </recent_temporary>
   </component>
@@ -298,23 +310,24 @@
       <option name="presentableId" value="Default" />
       <updated>1560133173998</updated>
       <workItem from="1560133175340" duration="19010000" />
-      <workItem from="1560260706562" duration="13344000" />
+      <workItem from="1560260706562" duration="16693000" />
+      <workItem from="1560397107460" duration="1507000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32354000" />
+    <option name="totallyTimeSpent" value="37210000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2357" y="0" width="1003" height="1080" extended-state="6" />
+    <frame x="2457" y="0" width="903" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.18483904" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3670151" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" x="58" y="402" width="1398" height="273" id="Find" order="1" side_tool="true" type="FLOATING" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27029702" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32871288" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -333,12 +346,12 @@
       <window_info anchor="right" id="Database" order="5" weight="0.32960597" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18483904" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3670151" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" x="58" y="402" width="1398" height="273" id="Find" order="1" side_tool="true" type="FLOATING" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27029702" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32871288" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -447,8 +460,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Part 9: Spells and ranged combat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="643" column="25" selection-start-line="643" selection-start-column="25" selection-end-line="643" selection-end-column="25" />
+        <state relative-caret-position="351">
+          <caret line="738" lean-forward="true" selection-start-line="738" selection-end-line="738" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Part 10: Main menu and saving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="56" column="64" lean-forward="true" selection-start-line="56" selection-start-column="64" selection-end-line="56" selection-end-column="64" />
         </state>
       </provider>
     </entry>
