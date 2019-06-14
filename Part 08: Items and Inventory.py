@@ -74,7 +74,7 @@ class Fighter:
     def heal(self, amount):
         self.hp += amount
         if self.hp > self.max_hp:
-            self.hp = self.max_hpß
+            self.hp = self.max_hp
 
 class BasicMonster:
     def take_turn(self):
