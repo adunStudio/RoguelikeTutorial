@@ -1,6 +1,7 @@
 import tcod
 import math
 import textwrap
+import shelve
 
 SCREEN_WIDTH = 80
 SCREEN_HEIGHT = 50
@@ -534,6 +535,9 @@ def menu(header, options, width):
 
     return None
 
+def msgbox(text, width=50):
+    menu(text, [], width)
+
 def main_menu():
     img = tcod.image_load("/Users/adun/Desktop/RoguelikeTutorial/princess.png") # 160 * 100
 
@@ -542,7 +546,14 @@ def main_menu():
 
         choice = menu("", ["Play a new game, ", "Continue last game", "Quit"], 24)
 
-        if choice == 0:
+        if choice == 1:
+            try:
+                load_game()
+            except:
+                msgbox("\n No saved game to load.\n", 24)
+                continue
+            play_game()
+        elif choice == 0:
             new_game()
             play_game()
 
@@ -793,12 +804,41 @@ def play_game():
 
         player_action = handle_keys()
         if player_action == 'exit':
+            save_game()
             break
 
         if game_state == "playing" and player_action != "didnt-take-turn":
             for object in objects:
                 if object.ai:
                     object.ai.take_turn()
+
+def save_game():
+
+    file = shelve.open("savegame", "n")
+    file["map"] = map
+    file["objects"] = objects
+    file["player_index"] = objects.index(player)
+    file['inventory'] = inventory
+    file['game_msgs'] = game_msgs
+    file['game_state'] = game_state
+
+    file.close()
+
+def load_game():
+    global map, objects, player, inventory, game_msgs, game_state
+
+    file = shelve.open("savegame", "r")
+    print(file)
+    map = file["map"]
+    objects = file['objects']
+    player = objects[file['player_index']]  # get index of player in objects list and access it
+    inventory = file['inventory']
+    game_msgs = file['game_msgs']
+    game_state = file['game_state']
+
+    file.close()
+
+    initialize_fov()
 
 
 def main():
