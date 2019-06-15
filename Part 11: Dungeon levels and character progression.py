@@ -26,7 +26,7 @@ ROOM_MAX_SIZE = 10
 ROOM_MIN_SIZE = 6
 MAX_ROOMS = 30
 
-EXPLORE_MODE = True
+EXPLORE_MODE = False
 
 color_dark_wall = tcod.Color(0, 0, 100)
 color_light_wall = tcod.Color(130, 110, 50)
@@ -37,8 +37,8 @@ FOV_ALGO = 0  #default FOV algorithm
 FOV_LIGHT_WALLS = True
 TORCH_RADIUS = 7
 
-MAX_ROOM_MONSTERS = 2
-MAX_ROOM_ITEMS = 10
+MAX_ROOM_MONSTERS = 3
+MAX_ROOM_ITEMS = 2
 
 INVENTORY_WIDTH = 50
 
@@ -53,13 +53,20 @@ CONFUSE_RANGE = 8
 FIREBALL_DAMAGE = 12
 FIREBALL_RADIUS = 3
 
+LEVEL_UP_BASE = 200
+LEVEL_UP_FACTOR = 150 # 200 + player.level * 150
+
+LEVEL_SCREEN_WIDTH = 40
+
+CHARACTER_SCREEN_WIDTH = 30
 
 class Fighter:
-    def __init__(self, hp, defense, power, death_function=None):
+    def __init__(self, hp, defense, power, xp, death_function=None):
         self.max_hp = hp
         self.hp = hp
         self.defense = defense
         self.power = power
+        self.xp = xp
 
         self.death_function = death_function
 
@@ -71,6 +78,10 @@ class Fighter:
             function = self.death_function
             if function is not None:
                 function(self.owner)
+
+            if self.owner != player:
+                player.fighter.xp += self.xp
+
 
     def attack(self, target):
         damage = self.power - target.fighter.defense
@@ -323,11 +334,11 @@ def place_objects(room):
 
         if not is_blocked(x, y):
             if tcod.random_get_int(0, 0, 100) < 80:  # 80% chance of getting an orc
-                fighter_component = Fighter(hp=10, defense=0, power=3, death_function=monster_death)
+                fighter_component = Fighter(hp=10, defense=0, power=3, xp=35, death_function=monster_death)
                 ai_component = BasicMonster()
                 monster = Object(x, y, 'o', 'orc', tcod.desaturated_green, blocks=True, fighter=fighter_component, ai=ai_component)
             else:
-                fighter_component = Fighter(hp=16, defense=1, power=4, death_function=monster_death)
+                fighter_component = Fighter(hp=16, defense=1, power=4, xp=100, death_function=monster_death)
                 ai_component = BasicMonster()
                 monster = Object(x, y, 'T', 'troll', tcod.darker_green, blocks=True, fighter=fighter_component, ai=ai_component)
 
@@ -381,7 +392,7 @@ def player_death(player):
 
 def monster_death(monster):
 
-    message(monster.name.capitalize() + ' is dead!', tcod.light_red)
+    message('The ' + monster.name.capitalize() + ' is dead! You gain ' + str(monster.fighter.xp) + ' experience points.', tcod.orange)
     monster.char = '%'
     monster.color = tcod.dark_red
     monster.blocks = False
@@ -567,6 +578,28 @@ def main_menu():
             break
 
 
+def check_level_up():
+    level_up_xp = LEVEL_UP_BASE * player.level * LEVEL_UP_FACTOR
+    if player.fighter.xp >= level_up_xp:
+        player.level += 1
+        player.fighter.xp -= level_up_xp
+        message('Your battle skills grow stronger! You reached level ' + str(player.level) + '!', tcod.yellow)
+
+        choice = None
+        while choice != None:
+            choice = menu('Level up! Choose a stat to raise:\n',
+                          ['Constitution (+20 HP, from ' + str(player.fighter.max_hp) + ')',
+                           'Strength (+1 attack, from ' + str(player.fighter.power) + ')',
+                           'Agility (+1 defense, from ' + str(player.fighter.defense) + ')'], LEVEL_SCREEN_WIDTH)
+            if choice == 0:
+                player.fighter.max_hp += 20
+                player.fighter.hp += 20
+            elif choice == 1:
+                player.fighter.power += 1
+            elif choice == 2:
+                player.fighter.defense += 1
+
+
 def render_all():
     global fov_map, color_dark_wall, color_light_wall
     global color_dark_ground, color_light_ground
@@ -665,18 +698,24 @@ def handle_keys():
         return 'exit'  # exit game
 
     if game_state == 'playing':
-        if key.vk == tcod.KEY_UP:
+        if key.vk == tcod.KEY_UP or key.vk == tcod.KEY_KP8:
             player_move_or_attack(0, -1)
-
-        elif key.vk == tcod.KEY_DOWN:
+        elif key.vk == tcod.KEY_DOWN or key.vk == tcod.KEY_KP2:
             player_move_or_attack(0, 1)
-
-        elif key.vk == tcod.KEY_LEFT:
+        elif key.vk == tcod.KEY_LEFT or key.vk == tcod.KEY_KP4:
             player_move_or_attack(-1, 0)
-
-        elif key.vk == tcod.KEY_RIGHT:
+        elif key.vk == tcod.KEY_RIGHT or key.vk == tcod.KEY_KP6:
             player_move_or_attack(1, 0)
-
+        elif key.vk == tcod.KEY_HOME or key.vk == tcod.KEY_KP7:
+            player_move_or_attack(-1, -1)
+        elif key.vk == tcod.KEY_PAGEUP or key.vk == tcod.KEY_KP9:
+            player_move_or_attack(1, -1)
+        elif key.vk == tcod.KEY_END or key.vk == tcod.KEY_KP1:
+            player_move_or_attack(-1, 1)
+        elif key.vk == tcod.KEY_PAGEDOWN or key.vk == tcod.KEY_KP3:
+            player_move_or_attack(1, 1)
+        elif key.vk == tcod.KEY_KP5:
+            pass
         else:
             key_char = chr(key.c)
 
@@ -700,6 +739,14 @@ def handle_keys():
             if key_char == 'a':
                 if stairs.x == player.x and stairs.y == player.y:
                     next_level()
+
+            if key_char == 'c':
+                level_up_xp = LEVEL_UP_BASE + player.level * LEVEL_UP_FACTOR
+                msgbox(
+                    'Character Information\n\nLevel: ' + str(player.level) + '\nExperience: ' + str(player.fighter.xp) +
+                    '\nExperience to level up: ' + str(level_up_xp) + '\n\nMaximum HP: ' + str(player.fighter.max_hp) +
+                    '\nAttack: ' + str(player.fighter.power) + '\nDefense: ' + str(player.fighter.defense),
+                    CHARACTER_SCREEN_WIDTH)
 
     else:
         return 'didnt-take-turn'
@@ -785,8 +832,10 @@ def new_game():
 
     dungeon_level = 1
 
-    fighter_component = Fighter(hp=30, defense=2, power=5, death_function=player_death)
+    fighter_component = Fighter(hp=30, defense=2, power=5, xp=0, death_function=player_death)
     player = Object(0, 0, '@', 'player', tcod.white, blocks=True, fighter=fighter_component)
+
+    player.level = 1
 
     make_map()
     initialize_fov()
@@ -824,6 +873,8 @@ def play_game():
         render_all()
 
         tcod.console_flush()
+
+        check_level_up()
 
         for object in objects:
             object.clear()
