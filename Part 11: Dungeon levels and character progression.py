@@ -9,7 +9,6 @@ SCREEN_HEIGHT = 50
 WINDOW_TITLE = "Python 3 tcod tutorial"
 FULL_SCREEN = False
 LIMIT_FPS = 20
-TURN_BASED = True # turn-based game
 
 MAP_WIDTH = 80
 MAP_HEIGHT = 43
@@ -579,25 +578,26 @@ def main_menu():
 
 
 def check_level_up():
-    level_up_xp = LEVEL_UP_BASE * player.level * LEVEL_UP_FACTOR
+    level_up_xp = LEVEL_UP_BASE + player.level * LEVEL_UP_FACTOR
     if player.fighter.xp >= level_up_xp:
         player.level += 1
         player.fighter.xp -= level_up_xp
         message('Your battle skills grow stronger! You reached level ' + str(player.level) + '!', tcod.yellow)
 
         choice = None
-        while choice != None:
+        while choice == None:
             choice = menu('Level up! Choose a stat to raise:\n',
                           ['Constitution (+20 HP, from ' + str(player.fighter.max_hp) + ')',
                            'Strength (+1 attack, from ' + str(player.fighter.power) + ')',
                            'Agility (+1 defense, from ' + str(player.fighter.defense) + ')'], LEVEL_SCREEN_WIDTH)
-            if choice == 0:
-                player.fighter.max_hp += 20
-                player.fighter.hp += 20
-            elif choice == 1:
-                player.fighter.power += 1
-            elif choice == 2:
-                player.fighter.defense += 1
+
+        if choice == 0:
+            player.fighter.max_hp += 20
+            player.fighter.hp += 20
+        elif choice == 1:
+            player.fighter.power += 1
+        elif choice == 2:
+            player.fighter.defense += 1
 
 
 def render_all():
@@ -677,19 +677,8 @@ def render_all():
     tcod.console_blit(panel, 0, 0, SCREEN_WIDTH, PANEL_HEIGHT, 0, 0, PANEL_Y)
 
 
-def get_key_event(turn_based=None):
-    if turn_based:
-        key = tcod.console_wait_for_keypress(True)
-    else:
-        # Real-time game play; don't wait for a player's key stroke
-        key = tcod.console_check_for_keypress()
-    return key
-
-
 def handle_keys():
-    global player, fov_recompute, TURN_BASED
-
-    key = get_key_event(TURN_BASED)
+    global key
 
     if key.vk == tcod.KEY_ENTER and key.lalt:
         tcod.console_set_fullscreen(not tcod.console_is_fullscreen())
@@ -748,8 +737,8 @@ def handle_keys():
                     '\nAttack: ' + str(player.fighter.power) + '\nDefense: ' + str(player.fighter.defense),
                     CHARACTER_SCREEN_WIDTH)
 
-    else:
-        return 'didnt-take-turn'
+            else:
+                return 'didnt-take-turn'
 
 
 def player_move_or_attack(dx, dy):
@@ -872,9 +861,11 @@ def play_game():
 
         render_all()
 
+
         tcod.console_flush()
 
         check_level_up()
+
 
         for object in objects:
             object.clear()
@@ -907,7 +898,6 @@ def load_game():
     global map, objects, player, inventory, game_msgs, game_state, stairs, dungeon_level
 
     file = shelve.open("savegame", "r")
-    print(file)
     map = file["map"]
     objects = file['objects']
     player = objects[file['player_index']]  # get index of player in objects list and access it
