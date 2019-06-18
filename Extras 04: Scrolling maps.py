@@ -812,10 +812,10 @@ def move_camera(target_x, target_y):
     x = target_x - CAMERA_WIDTH  // 2
     y = target_y - CAMERA_HEIGHT // 2
 
-    if x < 0: x = 0
-    if y < 0: y = 0
     if x > MAP_WIDTH  - CAMERA_WIDTH  - 1: x = MAP_WIDTH  - CAMERA_WIDTH  - 1
     if y > MAP_HEIGHT - CAMERA_HEIGHT - 1: y = MAP_HEIGHT - CAMERA_HEIGHT - 1
+    if x < 0: x = 0
+    if y < 0: y = 0
 
     if x != camera_x or y != camera_y: fov_recompute = True
 
